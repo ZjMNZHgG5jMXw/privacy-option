@@ -65,6 +65,6 @@ test-suite canonical-contracts
 
 source-repository head
   type:     git
-  location: https://github.com/ZjMNZHgG5jMXw/privacy-option
+  location: https://github.com/ZjMNZHgG5jMXw/privacy-option.git
 
 -- vim: ft=cabal:sts=2:sw=2:tw=80:et:nu:ai
