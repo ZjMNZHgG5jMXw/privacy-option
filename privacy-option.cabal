@@ -52,7 +52,7 @@ library
 
 test-suite canonical-contracts
   type:             exitcode-stdio-1.0
-  main-is:          Test.hs
+  main-is:          Language/POL/Syntax/Test.hs
   build-depends:
     base          >=4.6     && <4.7,
     parallel      >=3.2     && <3.3,

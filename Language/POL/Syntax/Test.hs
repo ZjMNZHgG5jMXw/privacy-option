@@ -1,9 +1,10 @@
 module Main where
 
-import Prelude hiding ( and, or, until )
-import Language.SimPOL
-import Language.SimPOL.Template
-import System.Exit
+import Prelude                    hiding  ( and, or, until )
+import System.Exit                        ( ExitCode, exitSuccess, exitFailure )
+
+import Language.POL.Syntax
+import Data.POL.Observable                ( ObservableT ( .. ), Label ( .. ), constant )
 
 checks :: [(String, Bool)]
 checks =
@@ -69,24 +70,21 @@ main  | fs == []  = exitSuccess
 failed :: [(a, Bool)] -> [a]
 failed = map fst . filter (not . snd)
 
-z :: Contract
+z, c1, c2, c3 :: Contract String String XString IO
 z = zero
+c1 = pdata "a" "a"
+c2 = pdata "b" "b"
+c3 = pdata "c" "c"
 
-d :: String -> Contract
-d x = disclose x x x
+o1 :: ObservableT XString IO Bool
+o1 = constant True
 
-c1,c2,c3,c4,c5 :: Contract
-c1 = d "a"
-c2 = d "b"
-c3 = d "c"
-c4 = d "d"
-c5 = d "e"
+newtype XString = XString { str :: String } deriving ( Eq, Ord, Show )
 
-o1,o2,o3,o4,o5 :: Obs Bool
-o1 = at 1
-o2 = at 2
-o3 = at 3
-o4 = at 4
-o5 = at 5
+instance Label XString where
+  nolabel = XString "no label"
+  nullary = XString . id
+  unary   = const . XString
+  binary  = const . const . XString
 
 -- vim: ft=haskell:sts=2:sw=2:et:nu:ai
