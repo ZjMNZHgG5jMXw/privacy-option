@@ -5,6 +5,7 @@ module Language.POL
   , module Data.POL.Observable
   , module Data.POL.Time
   , module Semantics.POL.Management
+  , module Semantics.POL.Valuation
   , module Semantics.POL.HumanReadable
   ) where
 import Prelude hiding ( and, or, until )
@@ -18,6 +19,7 @@ import Data.POL.Observable hiding
   , (&&), (||), not
   )
 import Data.POL.Time hiding ( zero )
-import Semantics.POL.Management hiding ( when )
+import Semantics.POL.Management ( execute )
+import Semantics.POL.Valuation ( valuate )
 import Semantics.POL.HumanReadable
 -- vim: ft=haskell:sts=2:sw=2:et:nu:ai
