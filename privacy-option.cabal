@@ -18,7 +18,6 @@ library
     Language.POL
     Language.POL.Syntax
     Data.POL.Observable
-    Data.POL.Time
     Semantics.POL.Management
     Semantics.POL.Valuation
     Semantics.POL.HumanReadable
