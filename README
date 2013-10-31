@@ -10,7 +10,7 @@ Find the documentation on DiVA,
   http://urn.kb.se/resolve?urn=urn:nbn:se:kau:diva-27396 .
 
 Explore simPOL, a simple instance of the Privacy Option Language,
-by running loading start.hs in a ghci session.
+by loading start.hs in a ghci session.
 
   $ ghci start.hs
 
