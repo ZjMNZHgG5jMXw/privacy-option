@@ -1,7 +1,5 @@
 module Language.POL
   ( module Language.POL.Syntax
-  , module Data.POL.PersonalData
-  , module Data.POL.Purpose
   , module Data.POL.Observable
   , module Data.POL.Time
   , module Semantics.POL.Management
@@ -11,8 +9,6 @@ module Language.POL
 import Prelude hiding ( and, or, until )
 import qualified Prelude as P ( and, or, until )
 import Language.POL.Syntax
-import Data.POL.PersonalData hiding ( covers )
-import Data.POL.Purpose hiding ( covers )
 import Data.POL.Observable hiding
   ( (==), (/=)
   , (<=), (>=), (<), (>)

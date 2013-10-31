@@ -17,8 +17,6 @@ library
   exposed-modules:
     Language.POL
     Language.POL.Syntax
-    Data.POL.Purpose
-    Data.POL.PersonalData
     Data.POL.Observable
     Data.POL.Time
     Semantics.POL.Management

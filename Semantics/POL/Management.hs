@@ -1,58 +1,19 @@
+{-# LANGUAGE MultiParamTypeClasses #-}
 module Semantics.POL.Management where
 import Prelude hiding ( and )
 import qualified Prelude as P
 import Control.Parallel
 import Language.POL.Syntax hiding ( when )
-import Data.POL.PersonalData
-import Data.POL.Purpose
-import Data.POL.Observable
-class Monad m => Management m where
-  use         ::  ( PersonalData a, Purpose p, Label l
-                  , Show a, Show p, Show l
-                  , Ord a, Ord p, Ord l
-                  )
-              => a -> p -> m (Contract a p l m)
-  send        ::  ( PersonalData a, Purpose p, Label l
-                  , Show a, Show p, Show l
-                  , Ord a, Ord p, Ord l
-                  )
-              => Contract a p l m -> m (Contract a p l m)
-  greedy      ::  ( PersonalData a, Purpose p, Label l
-                  , Show a, Show p, Show l
-                  , Ord a, Ord p, Ord l
-                  )
-              => Contract a p l m -> Contract a p l m
-                -> m (Contract a p l m)
-  ifthenelse  ::  ( PersonalData a, Purpose p, Label l
-                  , Show a, Show p, Show l
-                  , Ord a, Ord p, Ord l
-                  )
-              => ObservableT l m Bool
-              -> Contract a p l m -> Contract a p l m
-              -> m (Contract a p l m)
-  when        ::  ( PersonalData a, Purpose p, Label l
-                  , Show a, Show p, Show l
-                  , Ord a, Ord p, Ord l
-                  )
-              => ObservableT l m Bool -> Contract a p l m
-              -> m (Contract a p l m)
-  stopping    ::  ( PersonalData a, Purpose p, Label l
-                  , Show a, Show p, Show l
-                  , Ord a, Ord p, Ord l
-                  )
-              => ObservableT l m Bool -> Contract a p l m
-              -> m (Contract a p l m)
-  absorb      ::  ( PersonalData a, Purpose p, Label l
-                  , Show a, Show p, Show l
-                  , Ord a, Ord p, Ord l
-                  )
-              => ObservableT l m Bool -> Contract a p l m
-              -> m (Contract a p l m)
-execute ::  ( Management m
-            , PersonalData a, Purpose p, Label l
-            , Show a, Show p, Show l
-            , Ord a, Ord p, Ord l )
-        => Contract a p l m -> m (Contract a p l m)
+import Data.POL.Observable ( ObservableT )
+class Monad m => Management a p l m where
+  use         :: a -> p -> m (Contract a p l m)
+  send        :: Contract a p l m -> m (Contract a p l m)
+  greedy      :: Contract a p l m -> Contract a p l m -> m (Contract a p l m)
+  ifthenelse  :: ObservableT l m Bool -> Contract a p l m -> Contract a p l m -> m (Contract a p l m)
+  when        :: ObservableT l m Bool -> Contract a p l m -> m (Contract a p l m)
+  stopping    :: ObservableT l m Bool -> Contract a p l m -> m (Contract a p l m)
+  absorb      :: ObservableT l m Bool -> Contract a p l m -> m (Contract a p l m)
+execute :: (Management a p l m, Ord a, Ord p, Ord l) => Contract a p l m -> m (Contract a p l m)
 execute Zero          = return Zero
 execute (Data a p)    = use a p
 execute (Give c)      = send c
