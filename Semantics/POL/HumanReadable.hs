@@ -1,6 +1,6 @@
 module Semantics.POL.HumanReadable
-  ( PrettyPrintable, pretty
-  , PrettyDriver, text, mark, emph, items, indent, (+++)
+  ( PrettyPrintable ( pretty )
+  , PrettyDriver ( text, mark, emph, items, indent, (+++) )
   ) where
 import Language.POL.Syntax ( Contract ( .. ), foldAnd, foldOr )
 import Data.POL.Observable ( ObservableT )
