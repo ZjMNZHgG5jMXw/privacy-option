@@ -25,7 +25,6 @@ library
   -- other-extensions:    
   build-depends:
     base          >=4.6     && <4.7,
-    parallel      >=3.2     && <3.3,
     transformers  >=0.3     && <0.4,
     containers    >=0.5     && <0.6
   -- hs-source-dirs:      
@@ -37,7 +36,6 @@ test-suite canonical-contracts
   main-is:          Language/POL/Syntax/Test.hs
   build-depends:
     base          >=4.6     && <4.7,
-    parallel      >=3.2     && <3.3,
     transformers  >=0.3     && <0.4,
     containers    >=0.5     && <0.6
   default-language: Haskell2010
